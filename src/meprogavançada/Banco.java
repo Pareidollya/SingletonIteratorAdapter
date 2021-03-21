@@ -11,21 +11,25 @@ package meprogavançada;
  */
 public class Banco {
     private String nomeBanco, unidade;
-    private vetor<pessoa> contas;
+    private static vetor<pessoa> contas = new vetor(10);
     private PBoleto pagamentoBoleto = new PBoleto();
     private pessoa conta; 
     
     private static Banco construtor = null;
 
-    private Banco(String nomeBanco, String unidade,vetor<pessoa> contas) {
+    private Banco(String nomeBanco, String unidade) {
         this.nomeBanco = nomeBanco;
         this.unidade = unidade;
-        this.contas = contas;
     }
-    public static Banco SolicitarBanco(vetor<pessoa> contas){//construtor singleton (solicitar se tiver conta)
+    public static Banco SolicitarBanco(pessoa conta){//construtor singleton (solicitar se tiver conta)
         if (construtor == null){
-            construtor = new Banco("Banco","U01",contas);  
+            construtor = new Banco("Banco","U01");  
             System.out.println("Banco instanciado");
+            contas.adicionaInicio(conta);
+        }
+        else{
+            contas.adicionaInicio(conta); //na segunda chamada registra o novo usuario no banco 
+            //System.out.println("2");
         }
         
         return construtor;

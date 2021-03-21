@@ -9,14 +9,14 @@ public class main {
     //pra usar semrpe deve possuir uma conta no banco 
     public static void main(String[] args) {
         pessoa p1 = new pessoa("p1",1293,1000);//cria pessoas 
+        Banco banco = Banco.SolicitarBanco(p1); 
+        
         pessoa p2 = new pessoa("p2",321,1000);
-        vetor contas = new vetor(10);
-        contas.adicionaInicio(p1);//cria vetor pra registra-las no banco
-        contas.adicionaInicio(p2);
+        Banco banco2 = Banco.SolicitarBanco(p2);
         
-        Banco banco = Banco.SolicitarBanco(contas); //instancia banco com as contas 
-        
-        System.out.println(banco.getContas().getElementos());
+        System.out.println(banco);
+        System.out.println(banco2); //verificar instancia em memoria 
+       
         banco.PagarBoleto(p1);
         banco.PagarBoleto(p2);
 
