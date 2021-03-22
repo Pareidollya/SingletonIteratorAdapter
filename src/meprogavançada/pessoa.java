@@ -9,7 +9,7 @@ public class pessoa {
     private String nome;
     private int id;
     private double saldo;
-    private Banco banco;
+    //private Banco banco;
     
     
 
@@ -42,7 +42,6 @@ public class pessoa {
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-
     }
     
   

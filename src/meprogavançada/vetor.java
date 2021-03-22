@@ -37,7 +37,7 @@ public class vetor<T> {
             if(Vit.next() == null){
                 vetor[count] = elemento;
                 elementos++;
-                System.out.println("Elemento adicionado inicio!");
+                System.out.println("Novo usuario adicionado ao banco!");
                 break;
             }
             count++;
@@ -67,6 +67,7 @@ public class vetor<T> {
         }
         
     }
+    
     public int encontrar(T dado){
         int i=0;
         Iterador vit = new Iterador(vetor);
@@ -79,6 +80,7 @@ public class vetor<T> {
         }
         return i;
     }
+    
     public boolean possuiDado(T dado){
             Iterador vit = new Iterador(vetor);
             if(vit.next() != dado){
@@ -112,6 +114,7 @@ public class vetor<T> {
        }
        
    }
+   
     public void RemoveInicio(){
         if(this.elementos == 0){
             System.out.println("Vetor ja esta vazio");
@@ -130,6 +133,7 @@ public class vetor<T> {
             count++;
         }
     }
+    
      public int Tamanho(){
         return this.getElementos();
     }
@@ -146,14 +150,14 @@ public class vetor<T> {
             if(Vit.next() != null){
                 vetor[count] = null;
                 elementos--;
-            }
+                }
             count++;
-        }
+            }
         }
         System.out.println("vetor limpo");
     }
      
-     public void redimencionar(){ //tratar exceção quanto a posição ao tamanho do vetor  
+     public void redimencionar(){ //tratar exceção quanto a posição ao tamanho do vetor (nao funciona em metodo static)
          if (this.elementos == this.getTamanho()){
              T[] vetor2 = (T[]) new Object[this.vetor.length * 2];
             for (int i = 0; i < this.vetor.length;i++){
@@ -161,7 +165,7 @@ public class vetor<T> {
          }
         System.out.println("Tamanho redimencionado!");
         this.vetor = vetor2;
-     }
+        }
     }  
      
      public void verificarPosição(int pos){ //tratar exceção quanto a posição a se inserir
