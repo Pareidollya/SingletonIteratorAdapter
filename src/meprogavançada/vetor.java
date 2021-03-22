@@ -43,7 +43,7 @@ public class vetor<T> {
             count++;
         }  
     }
-    public void adicionaFim(T elemento){ 
+    private void adicionaFim(T elemento){ 
         this.redimencionar(); //nao sei usar iterator 
         int count = tamanho - 1;
         while (count >= 0){
@@ -56,9 +56,16 @@ public class vetor<T> {
             count--;
         }
     }
+    public void print(){
+        for(int i = 0; i<vetor.length;i++){
+        System.out.println(vetor[i]);
+    }
+    }
     
     public boolean existeDado(int pos){
         //tratar
+        if(pos < 0)pos = 0;
+        
         if (vetor[pos] != null){
             return true;
         }
@@ -67,8 +74,29 @@ public class vetor<T> {
         }
         
     }
+
+    public int encontrar(pessoa dado){
+        int i=0;
+        
+        Iterador vit = new Iterador(vetor);
+        while(vit.hasNext()){ 
+            
+            if (vit.getAtual() != dado){
+                vit.next();
+                i++;           
+            }       
+            else{
+                i++;
+                break;
+            }
+        }
+        i--;
+        //if (i <=0 ) i++;
+        
+        return i;
+    }
     
-    public int encontrar(T dado){
+    public int encontrar2(T dado){
         int i=0;
         Iterador vit = new Iterador(vetor);
         
@@ -76,6 +104,7 @@ public class vetor<T> {
             i++;
         }
         else{
+            i++;
             return i;
         }
         return i;

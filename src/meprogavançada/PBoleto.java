@@ -14,15 +14,15 @@ public class PBoleto {
     }
     
     public void Depositar(vetor<pessoa> contas,pessoa conta,double valor){
-        System.out.println("\nDeposito de "+ valor+" Via boleto bancario para self: " + contas.recupera(contas.encontrar(conta)).getNome()+"\n------");
         contas.recupera(contas.encontrar(conta)).setSaldo(conta.getSaldo()+valor);
+        System.out.println("\nDeposito de "+ valor +" Via boleto bancario para self: " + contas.recupera(contas.encontrar(conta)).getNome());
         this.DadosAtuais(contas, conta);
          
     }
     
     public void PagarBanco(vetor<pessoa> contas,pessoa conta, double valor){ //imagina que em conta seria ID
         contas.recupera(contas.encontrar(conta)).setSaldo(conta.getSaldo()-valor);
-        System.out.println("\nPagamento via Pix "+contas.recupera(contas.encontrar(conta)).getId() + " valor: R$ " + valor);
+        System.out.println("\nPagamento via Boleto "+contas.recupera(contas.encontrar(conta)).getId() + " valor: R$ " + valor);
         this.DadosAtuais(contas, conta);
     }
     
@@ -37,6 +37,6 @@ public class PBoleto {
     }
     private void DadosAtuais(vetor<pessoa> contas,pessoa conta){
         System.out.println(contas.recupera(contas.encontrar(conta)).getNome()+" dados atuais, Id: "+
-                contas.recupera(contas.encontrar(conta)).getId()+", Saldo: R$ "+ contas.recupera(contas.encontrar(conta)).getSaldo()+"\n------");
+                contas.recupera(contas.encontrar(conta)).getId()+", Saldo: R$ "+ contas.recupera(contas.encontrar(conta)).getSaldo()+"\n");
     }
 }

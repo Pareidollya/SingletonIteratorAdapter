@@ -12,7 +12,6 @@ public class Iterador<T> implements Iterator {
     
     public Iterador(T[] itens) {
         this.itens = itens;
-        int posiçãoF = itens.length -1;
     }
 
     public boolean hasNext() {
@@ -26,6 +25,11 @@ public class Iterador<T> implements Iterator {
     public Object next() {
         Object item = itens[posicao];
         posicao++;
+        return item;
+    }
+    
+    public Object getAtual(){
+        Object item = itens[posicao];
         return item;
     }
  

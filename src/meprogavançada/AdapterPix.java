@@ -19,12 +19,12 @@ package meprogavançada;
     
     @Override
     public void Trasnferência(vetor<pessoa> contas,pessoa conta1,pessoa conta2,double valor){
-        pix.Transferir(contas, conta1, conta2, 0);
+        pix.Transferir(contas, conta1, conta2,valor);
     }
     
     @Override
     public void DepositoBancario(vetor<pessoa> contas,pessoa conta,double valor){
-        pix.Depositar(contas, conta, 0);
+        pix.Depositar(contas, conta,valor);
     }
 }
     

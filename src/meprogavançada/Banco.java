@@ -12,8 +12,7 @@ package meprogavançada;
 public class Banco {
     private String nomeBanco, unidade;
     private static vetor<pessoa> contas = new vetor(10);
-    private PBoleto pagamentoBoleto = new PBoleto();
-    private static pessoa user; 
+    private static pessoa conta; 
     
     private static Banco construtor = null;
 
@@ -22,29 +21,33 @@ public class Banco {
         this.unidade = unidade;
     }
     
-    public static Banco SolicitarBanco(pessoa conta){//construtor singleton (solicitar se tiver conta)
+    public static Banco SolicitarBanco(pessoa Conta){//construtor singleton (solicitar se tiver conta)
+        conta = Conta;
         if (construtor == null){
-            construtor = new Banco("Banco","U01");  
+            construtor = new Banco("Banco","U01"); 
             System.out.println("Banco instanciado");
-            System.out.println("\nNovo acesso de "+ conta.getNome() +" Ainda não cadastrado, realizando novo cadastro..");
-            user = conta;
-            contas.adicionaInicio(conta);
+            System.out.println("\nNovo acesso de "+ conta.getNome() +" Ainda não cadastrado, realizando novo cadastro..");        
+            contas.adicionaInicio(Conta);
         }
+        
         else{
-            if (contas.existeDado(contas.encontrar(conta))==false){
-                System.out.println("\nNovo acesso de "+ conta.getNome() +"Ainda não cadastrado, realizando novo cadastro..");        
+            if (contas.existeDado(contas.encontrar(conta)) == false){ 
+                conta = Conta;
+                System.out.println("\nNovo acesso de "+ conta.getNome() +" Ainda não cadastrado, realizando novo cadastro..");        
                 contas.adicionaInicio(conta); //na segunda chamada registra o novo usuario no banco sem criar novas instancias
-                user = conta;
+                
             }
             else{
+                conta = Conta;
                 System.out.println("\nAcesso de "+ conta.getNome() +" ja cadastrado");
-                user = conta;
+                
             }          
         }
         return construtor;
     }
     
-    public void Sacar(pessoa conta,double valor){ 
+    
+    public void Sacar(double valor){ 
         if (valor > conta.getSaldo()){
             System.out.println("Saldo insificiente!\nId: "+conta.getNome()+", "+conta.getId()+", Saldo: "+conta.getSaldo()+"\n");
         }
@@ -56,15 +59,15 @@ public class Banco {
         }      
     }
     
-    public void Cadastrar(pessoa conta){ //cadastrar a pessoa no banco ne 
+    public void Cadastrar(){ //cadastrar a pessoa no banco ne 
         this.contas.adicionaInicio(conta);
         System.out.println(conta.getNome() + " cadastrado" + this.contas.recupera(this.contas.encontrar(conta)));
     }
   
-    public void Pagar(String TipoPagamento,pessoa conta,double valor){
+    public void Pagar(String TipoPagamento,double valor){
         if (TipoPagamento == "Boleto"){
             AdapterPagamentos pagamento = new AdapterBoleto();
-            pagamento.Pagar(this.contas, conta, valor);
+            pagamento.Pagar(this.contas,this.conta, valor);
         }
         else if(TipoPagamento == "Débito"){
             AdapterPagamentos pagamento = new AdapterDébito();
@@ -76,33 +79,33 @@ public class Banco {
         }
     }
     
-    public void Transferência(String TipoTrasnferência,pessoa conta,pessoa conta2, double valor){ //conta 2 = quem recebe
+    public void Transferência(String TipoTrasnferência,pessoa conta2, double valor){ //conta 2 = quem recebe
         if(TipoTrasnferência == "Boleto"){
             AdapterPagamentos trasnferencia = new AdapterBoleto();
-            trasnferencia.Trasnferência(this.contas, conta, conta2, valor);     
+            trasnferencia.Trasnferência(contas, conta, conta2, valor);     
         }
         else if(TipoTrasnferência == "Débito"){
             AdapterPagamentos trasnferencia = new AdapterDébito();
-            trasnferencia.Trasnferência(this.contas, conta, conta2, valor);     
+            trasnferencia.Trasnferência(contas, conta, conta2, valor);     
         }
         else if(TipoTrasnferência == "Pix"){
             AdapterPagamentos trasnferencia = new AdapterPix();
-            trasnferencia.Trasnferência(this.contas, conta, conta2, valor);     
+            trasnferencia.Trasnferência(contas, conta, conta2, valor);     
         }    
     }
     
-    public void Depósitar(String TipoDepósito,pessoa conta,double valor){
+    public void Depósitar(String TipoDepósito,double valor){
         if(TipoDepósito == "Boleto"){
            AdapterPagamentos deposito = new AdapterBoleto();
-           deposito.DepositoBancario(this.contas, conta, valor);
+           deposito.DepositoBancario(contas,conta,valor);
+        }
+        else if(TipoDepósito == "Pix"){
+           AdapterPagamentos deposito = new AdapterPix();
+           deposito.DepositoBancario(contas, conta,valor);
         }
         else if(TipoDepósito == "Débito"){
            AdapterPagamentos deposito = new AdapterDébito();
-           deposito.DepositoBancario(this.contas, conta, valor);
-        }
-        else if(TipoDepósito == "Débito"){
-           AdapterPagamentos deposito = new AdapterDébito();
-           deposito.DepositoBancario(this.contas, conta, valor);
+           deposito.DepositoBancario(contas, conta,valor);
         }    
     }
 
