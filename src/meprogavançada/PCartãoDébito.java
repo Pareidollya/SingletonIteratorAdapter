@@ -12,7 +12,7 @@ package meprogavançada;
 public class PCartãoDébito {
     
      public void Depositar(vetor<pessoa> contas,pessoa conta,double valor){
-        System.out.println("\nDeposito de R$ "+ valor+" Via Débito para self: " + contas.recupera(contas.encontrar(conta)).getNome()+"\n------");
+        System.out.println("\nDeposito de R$ "+ valor+" Via Débito para self: " + contas.recupera(contas.encontrar(conta)).getNome());
         contas.recupera(contas.encontrar(conta)).setSaldo(conta.getSaldo()+valor);
         this.DadosAtuais(contas, conta);   
     }
@@ -25,8 +25,8 @@ public class PCartãoDébito {
         
         contas.recupera(contas.encontrar(conta1)).setSaldo(conta1.getSaldo()-valor);
         contas.recupera(contas.encontrar(conta2)).setSaldo(conta2.getSaldo()+valor);
-        System.out.println("\nTransferência via Débito de: R$ "+valor +" "+contas.recupera(contas.encontrar(conta1)).getId()+
-                " para "+ contas.recupera(contas.encontrar(conta2)).getId()+"\n");
+        System.out.println("\nTransferência via Débito de: R$ "+valor +" "+contas.recupera(contas.encontrar(conta1)).getNome()+
+                " para "+ contas.recupera(contas.encontrar(conta2)).getNome());
         this.DadosAtuais(contas, conta1);
         System.out.println("");
         this.DadosAtuais(contas, conta2);
@@ -34,6 +34,6 @@ public class PCartãoDébito {
     
     private void DadosAtuais(vetor<pessoa> contas,pessoa conta){
         System.out.println(contas.recupera(contas.encontrar(conta)).getNome()+" dados atuais, Id: "+
-                contas.recupera(contas.encontrar(conta)).getId()+", Saldo: R$ "+ contas.recupera(contas.encontrar(conta)).getSaldo()+"\n------");
+                contas.recupera(contas.encontrar(conta)).getId()+", Saldo: R$ "+ contas.recupera(contas.encontrar(conta)).getSaldo()+"\n");
     }
 }

@@ -30,8 +30,8 @@ public class PBoleto {
         
         contas.recupera(contas.encontrar(conta1)).setSaldo(conta1.getSaldo()-valor);
         contas.recupera(contas.encontrar(conta2)).setSaldo(conta2.getSaldo()+valor);
-        System.out.println("\nTransferencia de: R$ "+valor +" "+contas.recupera(contas.encontrar(conta1)).getId()+
-                " para "+ contas.recupera(contas.encontrar(conta2)).getId()+"\n");
+        System.out.println("\nTransferencia de: R$ "+valor +" "+contas.recupera(contas.encontrar(conta1)).getNome()+
+                " para "+ contas.recupera(contas.encontrar(conta2)).getNome());
         this.DadosAtuais(contas, conta1);
         this.DadosAtuais(contas, conta2);
     }

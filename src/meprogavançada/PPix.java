@@ -15,7 +15,7 @@ public class PPix {
     }
     
     public void Depositar(vetor<pessoa> contas,pessoa conta,double valor){
-        System.out.println("\nDeposito de R$ "+ valor+" Via Pix bancario para self: " + contas.recupera(contas.encontrar(conta)).getNome()+"\n------");
+        System.out.println("\nDeposito de R$ "+ valor+" Via Pix bancario para self: " + contas.recupera(contas.encontrar(conta)).getNome()+"");
         contas.recupera(contas.encontrar(conta)).setSaldo(conta.getSaldo()+valor);
         this.DadosAtuais(contas, conta);   
     }
@@ -28,8 +28,8 @@ public class PPix {
         
         contas.recupera(contas.encontrar(conta1)).setSaldo(conta1.getSaldo()-valor);
         contas.recupera(contas.encontrar(conta2)).setSaldo(conta2.getSaldo()+valor);
-        System.out.println("Transferencia via pix de: R$ "+valor +" "+contas.recupera(contas.encontrar(conta1)).getId()+
-                " para "+ contas.recupera(contas.encontrar(conta2)).getId());
+        System.out.println("Transferencia via pix de: R$ "+valor +" "+contas.recupera(contas.encontrar(conta1)).getNome()+
+                " para "+ contas.recupera(contas.encontrar(conta2)).getNome());
         this.DadosAtuais(contas, conta1);
         this.DadosAtuais(contas, conta2);
     }

@@ -52,7 +52,7 @@ public class Banco {
             System.out.println("Saldo insificiente!\nId: "+conta.getNome()+", "+conta.getId()+", Saldo: "+conta.getSaldo()+"\n");
         }
         else{
-            System.out.println("\nSaque de: R$"+valor);
+            System.out.println("Saque de: R$"+valor);
             contas.recupera(contas.encontrar(conta)).setSaldo(conta.getSaldo()-valor);
             System.out.println(contas.recupera(contas.encontrar(conta)).getNome()+", dados atuais, Id: "+
                 contas.recupera(contas.encontrar(conta)).getId()+", Saldo: R$ "+ contas.recupera(contas.encontrar(conta)).getSaldo()+"\n");
@@ -107,6 +107,11 @@ public class Banco {
            AdapterPagamentos deposito = new AdapterDébito();
            deposito.DepositoBancario(contas, conta,valor);
         }    
+   
+    }
+    public void encerrar(){
+        System.out.println(conta.getNome() + " Sessão encerrada!");
+        conta = null;
     }
 
     public vetor<pessoa> getContas() {

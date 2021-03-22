@@ -15,7 +15,6 @@ public class AdapterBoleto implements AdapterPagamentos{
     @Override
     public void Pagar(vetor<pessoa> contas,pessoa conta,double valor){
         boleto.PagarBanco(contas, conta, valor);
-        System.out.print(valor);
     }
     
     @Override
